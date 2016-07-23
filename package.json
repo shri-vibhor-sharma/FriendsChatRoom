@@ -1,0 +1,20 @@
+{
+  "name": "newwebchat",
+  "version": "1.0.0",
+  "description": "this is vibhor app",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "connect-busboy": "0.0.2",
+    "express": "^4.10.2",
+    "fs-extra": "^0.30.0",
+    "multer": "^1.1.0",
+    "socket.io": "^1.4.8"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "vibhor sharma",
+  "license": "ISC"
+}
