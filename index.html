@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Socket.IO chat</title>
+    <title>Super chat App</title>
     <style>
       * { margin: 0; padding: 0; box-sizing: border-box; }
       body { font: 13px Helvetica, Arial; }
@@ -21,6 +21,7 @@
       
       <script src="/socket.io/socket.io.js"></script>
 <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+      
 <script>
     function getQueryParams(qs) {
     qs = qs.split('+').join(' ');
@@ -73,15 +74,90 @@ var names= query.varname+':';
      
     $('#messages').append($('<li>').text(msg));
       
+      
+      //to get desktop notification
+      
+      // request permission on page load
+
+  if (!Notification) {
+    alert('Desktop notifications not available in your browser. Try Chromium.'); 
+    return;
+  }
+
+  if (Notification.permission !== "granted")
+    Notification.requestPermission();
+
+
+
+  if (Notification.permission !== "granted")
+    Notification.requestPermission();
+  else {
+      if(document.hidden==true){
+    var notification = new Notification('new message:', {
+      icon: 'http://sahrzad.net/blog/wp-content/uploads/2016/05/messages-mac-icon-100638468-large.png',
+      body: " "+msg,
+        
+        'content-available': '1',
+      //  vibrate:[200,100,200],
+        
+    });
+setTimeout(notification.close.bind(notification), 4000);
+        
+    notification.onclick = function () {
+     // window.open("http://stackoverflow.com/a/13328397/1269037");      
+    };
+          
+   
+
+  }
+  }
+
+      //above code is for desktop notification
+      
+      
+      
   });
     
     socket.on('user_connected',function(username){
         
       //var query = getQueryParams(document.location.search);
 //var names= text(username);
-       alert(username+":joined the chat");
-      // window.open ("http://xnxx.com","mywindow","status=1");
+      // alert(username+":joined the chat");
+        
+      // window.open ("http://thevibhor.com","mywindow","status=1");
        // $('#messages').append($('<li>').'a new user:joined the chat');
+        
+        if (!Notification) {
+    alert('Desktop notifications not available in your browser. Try Chromium.'); 
+    return;
+  }
+
+  if (Notification.permission !== "granted")
+    Notification.requestPermission();
+
+
+
+
+  else {
+      if(document.hidden==true){
+    var notification = new Notification('Yo!', {
+      icon: 'http://sahrzad.net/blog/wp-content/uploads/2016/05/messages-mac-icon-100638468-large.png',
+      body: username+":joined the chat! ",
+    
+    });
+          setTimeout(notification.close.bind(notification), 4000);
+
+    notification.onclick = function () {
+     // window.open("http://stackoverflow.com/a/13328397/1269037");      
+    };
+
+  }}
+        
+        
+        
+        
+        
+        
         });
     
     
